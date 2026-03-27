@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produk</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,400&family=Quicksand:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background-image: url("https://files.catbox.moe/udvsba.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(60, 20, 0, 0.45);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 10px 30px;
+      background-color: rgb(253, 132, 84);
+      z-index: 1000;
+    }
+
+    .subjudul h1 {
+      font-family: 'Pacifico', cursive;
+      color: white;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+    }
+
+    .menu { display: flex; gap: 4px; }
+
+    .menu a {
+      text-decoration: none;
+      color: rgb(185, 28, 0);
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: 0.4s;
+      font-size: 0.9rem;
+    }
+
+    .menu a:hover {
+      color: rgb(255, 115, 0);
+      background: rgb(139, 40, 0);
+      transform: scale(1.1);
+    }
+
+    .page-hero {
+      position: relative;
+      z-index: 1;
+      padding-top: 110px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: #fff8f0;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      margin-bottom: 10px;
+    }
+
+    .page-hero p {
+      color: #ffd9b3;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+
+    .products-section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 20px 60px;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #ffbb80;
+      margin-bottom: 14px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .product-card {
+      background: rgba(255, 245, 230, 0.92);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(80, 20, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(80, 20, 0, 0.45);
+    }
+
+    .product-card:nth-child(1) { animation-delay: 0.1s; }
+    .product-card:nth-child(2) { animation-delay: 0.2s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-img-wrap {
+      width: 100%;
+      height: 180px;
+      background: #f5c98a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    .card-body {
+      padding: 18px 20px 22px;
+    }
+
+    .card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: #471002;
+      margin-bottom: 6px;
+    }
+
+    .card-body p {
+      font-size: 0.88rem;
+      color: #6b3010;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #c0390a;
+    }
+
+    .btn-order {
+      background: #fd7b11;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 7px 18px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-order:hover {
+      background: #c0390a;
+      transform: scale(1.05);
+    }
+
+    .back-wrap {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding-bottom: 50px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 11px 28px;
+      background: white;
+      color: #f18841;
+      font-weight: 700;
+      border: 2px solid #fd7b11;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .back-btn:hover {
+      background: #f57746;
+      color: white;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      background-color: rgb(189, 74, 8);
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="subjudul"><h1>ONCOMERIA</h1></div>
+      <div class="menu">
+        <a href="index.html#home"><i class="fa fa-star-o"></i> Home</a>
+        <a href="index.html#location"><i class="fa fa-map-pin"></i> Santa Angela</a>
+        <a href="index.html#about"><i class="fa fa-bullhorn"></i> About</a>
+        <a href="index.html#products"><i class="fa fa-cutlery"></i> Products</a>
+        <a href="index.html#contact"><i class="fa fa-phone-square"></i> Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <h1>Produk Kami</h1>
+    <p>Oncom dengan ampas berbeda? Temukan rasa unik di sini!</p>
+  </div>
+
+  <section class="products-section">
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="card-img-wrap">🫛</div>
+        <div class="card-body">
+          <h3>Oncom Kacang Hijau</h3>
+          <p>Oncom kacang hijau sedikit manis, dengan aroma khas yang menenangkan gurih di setiap gigitan.</p>
+          <div class="card-footer">
+            <span class="price">Rp 8.000</span>
+            <a href="index.html#contact" class="btn-order">Pesan</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-img-wrap">🫘</div>
+        <div class="card-body">
+          <h3>Oncom Kacang Tanah</h3>
+          <p>Perpaduan oncom segar dengan menggunakan kacang tanah yang gurih, renyah, dan sedikit manis, dengan nuansa earthy (seperti kacang tanah/alami) yang kuat.</p>
+          <div class="card-footer">
+            <span class="price">Rp 9.000</span>
+            <a href="index.html#contact" class="btn-order">Pesan</a>
+          </div>
+        </div>
+      </div>
+        </div>
+  </section>
+
+  <div class="back-wrap">
+    <a href="index.html" class="back-btn"><i class="fa fa-arrow-left"></i> Kembali ke Beranda</a>
+  </div>
+</body>
+</html>
